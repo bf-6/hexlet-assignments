@@ -57,6 +57,4 @@ tasks.withType(JavaCompile) {
 // BEGIN
 task stage(dependsOn: ['clean', 'installDist'])
 installDist.mustRunAfter clean
-
-java.runtime.version=17
 // END
