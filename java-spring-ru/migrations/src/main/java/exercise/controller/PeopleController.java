@@ -1,6 +1,7 @@
 package exercise.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,8 @@ import java.util.Map;
 @RequestMapping("/people")
 @RequiredArgsConstructor
 public class PeopleController {
-
-
-   JdbcTemplate jdbc;
+    @Autowired
+    JdbcTemplate jdbc;
 
 
     @PostMapping(path = "")
