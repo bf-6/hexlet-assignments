@@ -1,15 +1,23 @@
 package exercise.dto;
 
 import exercise.model.Category;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 // BEGIN
-@Getter
-@Setter
+@Data
 public class ArticleDto {
+
+    @NotBlank
+    @Size(min = 3, max = 100)
     private String name;
+
+    @NotBlank
+    @Size(min = 3, max = 100)
     private String body;
+
     private Category category;
+
 }
 // END

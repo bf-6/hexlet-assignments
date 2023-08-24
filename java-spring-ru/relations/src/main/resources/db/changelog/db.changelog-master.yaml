@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1685972574286-1
+      id: 1687104536196-1
       author: bf6 (generated)
       changes:
         - createTable:
@@ -23,3 +23,34 @@ databaseChangeLog:
                   name: category_id
                   type: BIGINT
             tableName: article
+  - changeSet:
+      id: 1687104536196-2
+      author: bf6 (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: categoryPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+            tableName: category
+  - changeSet:
+      id: 1687104536196-3
+      author: bf6 (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: category_id
+            baseTableName: article
+            constraintName: FKy5kkohbk00g0w88fi05k2hcw
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: category
+            validate: true

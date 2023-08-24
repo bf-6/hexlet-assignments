@@ -1,8 +1,7 @@
 package exercise.model;
 
 import jakarta.persistence.Column;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,8 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GenerationType;
 
 // BEGIN
-@Getter
-@Setter
+@Data
 @Entity
 public class Article {
     @Id
@@ -27,8 +25,5 @@ public class Article {
 
     @ManyToOne
     private Category category;
-
-    public void setId(long id) {
-    }
 }
 // END
