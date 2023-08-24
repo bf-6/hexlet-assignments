@@ -1,6 +1,5 @@
 package exercise.controller;
 
-import exercise.dto.ArticleDto;
 import exercise.model.Article;
 import exercise.repository.ArticleRepository;
 
@@ -20,7 +19,11 @@ import org.springframework.web.bind.annotation.PatchMapping;
 @RequiredArgsConstructor
 public class ArticlesController {
 
-    ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
+
+    public ArticlesController(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
 
     @GetMapping(path = "")
     public Iterable<Article> getArticles() {
