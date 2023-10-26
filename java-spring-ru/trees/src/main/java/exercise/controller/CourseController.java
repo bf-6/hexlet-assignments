@@ -34,14 +34,15 @@ public class CourseController {
     // BEGIN
 
     @GetMapping(path = "/{id}/previous")
-    public List<Long> getPrevious(@PathVariable long id) {
+    public Iterable<Course> getPrevious(@PathVariable long id) {
         Course course = courseRepository.findById(id);
         String path = course.getPath();
 
-        if (path != null && !EMPTY_STRING.equals(path)) {
-            return Arrays.stream(path.split(DOT_STRING))
+        if (path != null) {
+            List<Long> previousCoursesIDs = Arrays.stream(path.split(DOT_STRING))
                     .map(Long::parseLong)
                     .collect(Collectors.toList());
+            return courseRepository.findAllById(previousCoursesIDs);
         }
         return null;
     }
