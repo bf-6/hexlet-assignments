@@ -3,8 +3,6 @@ package exercise.controller;
 import exercise.model.Course;
 import exercise.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +17,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CourseController {
 
+    private static final String DOT_STRING = "\\.";
+    private static final String EMPTY_STRING = "";
     private final CourseRepository courseRepository;
 
     @GetMapping(path = "")
@@ -32,9 +32,18 @@ public class CourseController {
     }
 
     // BEGIN
+
     @GetMapping(path = "/{id}/previous")
-    public List<Course> getPrevious(@PathVariable long id) {
-        return courseRepository.findById(id);
+    public List<Long> getPrevious(@PathVariable long id) {
+        Course course = courseRepository.findById(id);
+        String path = course.getPath();
+
+        if (path != null && !EMPTY_STRING.equals(path)) {
+            return Arrays.stream(path.split(DOT_STRING))
+                    .map(Long::parseLong)
+                    .collect(Collectors.toList());
+        }
+        return null;
     }
     // END
 
