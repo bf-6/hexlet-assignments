@@ -36,10 +36,10 @@ public class AppTest {
     // BEGIN
     @Container
     private static PostgreSQLContainer<?> database = new PostgreSQLContainer<>("postgres")
-            .withDatabaseName("dbname")
+            .withDatabaseName("hexlet")
             .withUsername("sa")
             .withPassword("sa")
-            .withInitScript("src/test/resources/init.sql");
+            .withInitScript("init.sql");
 
     @DynamicPropertySource
     public static void properties(DynamicPropertyRegistry registry) {
